@@ -1,0 +1,15 @@
+{
+  "name": "rantang-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "API REST RANTANG + penerima telemetri wadah pintar (HTTP/MQTT) + siaran SSE",
+  "scripts": {
+    "start": "node src/index.js",
+    "sim:device": "node tools/fake-device.js"
+  },
+  "optionalDependencies": {
+    "mqtt": "^5.10.0"
+  },
+  "engines": { "node": ">=20" }
+}

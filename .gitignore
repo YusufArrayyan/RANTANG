@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.DS_Store
+*.log
+.claude/settings.local.json
+.impeccable/
+build/
+.claude/
+Logo RANTANG.png
+PRD_RANTANG_Yusuf_Arrayyan.docx
