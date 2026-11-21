@@ -57,7 +57,7 @@ export default function RecordDetail() {
       <section className="zone stack">
         <div className="row wrap" style={{ gap: 8 }}><KindChip kind={r.kind} /><StatusChip record={r} /></div>
         <p style={{ fontSize: 40, fontWeight: 800, lineHeight: 1 }} className="num">{fmtKg(r.handover?.weightKg ?? r.weightKg)} <span style={{ fontSize: 18, color: 'var(--ink-2)' }}>kg</span></p>
-        <dl className="offer kv" style={{ border: 0, background: 'none', margin: 0 }}>
+        <dl className="kv" style={{ margin: 0 }}>
           <dt><Clock size={14} strokeWidth={SW} />Jam masak</dt><dd className="num">{fmtDateTime(r.cookedAt)}</dd>
           {r.kind === 'layak' && !r.handover && (<><dt><ClipboardCheck size={14} strokeWidth={SW} />Batas aman</dt><dd className="num">{fmtTime(safeDeadline(r, db.rules))} ({left > 0 ? `sisa ${fmtLeft(left)}` : 'lewat, hanya ke pengolah'})</dd></>)}
           {r.deviceId && (<><dt><Cpu size={14} strokeWidth={SW} />Perangkat</dt><dd>{r.deviceId}</dd></>)}

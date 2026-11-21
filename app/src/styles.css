@@ -360,9 +360,9 @@ a.item:hover, button.item:hover { background: var(--mint-2); }
 /* ---------- Offer card ---------- */
 .offer { border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: #fff; }
 .offer .top { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-.offer .kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 14px; }
-.offer .kv dt { color: var(--ink-2); display: flex; align-items: center; gap: 6px; }
-.offer .kv dd { margin: 0; font-weight: 600; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 14px; }
+.kv dt { color: var(--ink-2); display: flex; align-items: center; gap: 6px; }
+.kv dd { margin: 0; font-weight: 600; }
 .offer .acts { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; padding: 12px 16px 16px; }
 .countdown { font-weight: 800; font-variant-numeric: tabular-nums; }
 
@@ -419,7 +419,7 @@ a.item:hover, button.item:hover { background: var(--mint-2); }
   .login .art { display: flex; flex-direction: column; justify-content: space-between; background: var(--brand-deep); color: #fff; padding: 48px; position: relative; overflow: hidden; }
   .login .art h2 { font-size: 34px; font-weight: 800; line-height: 1.15; max-width: 14ch; }
   .login .art p { color: rgba(255, 255, 255, 0.78); max-width: 46ch; }
-  .login .flow { display: grid; grid-template-columns: repeat(5, auto); align-items: center; gap: 10px; font-size: 13px; font-weight: 700; }
+  .login .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; }
   .login .flow span { background: rgba(255, 255, 255, 0.1); padding: 8px 12px; border-radius: var(--pill); }
   .login .flow svg { color: var(--accent); }
   .login .art .ring { position: absolute; right: -120px; bottom: -120px; width: 420px; height: 420px; border-radius: 50%; border: 48px solid rgba(242, 194, 0, 0.1); }

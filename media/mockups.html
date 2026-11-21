@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: PJS; src: url('/app/dist/assets/PJS-800.woff2'); }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #23303A; }
+  .stage { width: 1600px; height: 1000px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .dark { background: #0A3B38; color: #fff; }
+  .light { background: #F3F8F6; }
+  .ring { position: absolute; border-radius: 50%; border: 70px solid rgba(242,194,0,.10); }
+  .phone { position: relative; width: 340px; height: 736px; border-radius: 54px; background: #0d1414; padding: 11px; box-shadow: 0 2px 0 1px #2a3434 inset, 0 40px 80px rgba(0,0,0,.35), 0 10px 24px rgba(0,0,0,.2); }
+  .phone .scr { width: 100%; height: 100%; border-radius: 44px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+  .phone .sb { height: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 34px; font-size: 14px; font-weight: 700; color: #23303A; }
+  .phone .sb i { display: inline-block; width: 22px; height: 11px; border: 1.6px solid #23303A; border-radius: 3px; position: relative; }
+  .phone .sb i::after { content: ''; position: absolute; inset: 1.5px 5px 1.5px 1.5px; background: #23303A; border-radius: 1px; }
+  .phone .scr img { flex: 1; min-height: 0; width: 100%; object-fit: contain; object-position: top; display: block; }
+  .phone::after { content: ''; position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: 96px; height: 28px; border-radius: 16px; background: #0d1414; }
+  .phone .btn-side { position: absolute; right: -4px; top: 170px; width: 4px; height: 80px; background: #1c2626; border-radius: 0 3px 3px 0; }
+  .laptop { position: relative; }
+  .laptop .screen { width: 1120px; height: 700px; background: #0d1414; border-radius: 22px 22px 0 0; padding: 26px 26px 30px; box-shadow: 0 40px 90px rgba(0,0,0,.35); }
+  .laptop .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 4px; display: block; }
+  .laptop .base { width: 1300px; height: 26px; margin-left: -90px; background: linear-gradient(#d9dfe1, #aeb7ba); border-radius: 0 0 26px 26px; position: relative; }
+  .laptop .base::before { content: ''; position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 180px; height: 10px; background: #9aa4a7; border-radius: 0 0 10px 10px; }
+  .caption { position: absolute; left: 80px; top: 70px; max-width: 470px; }
+  .brand { display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 26px; letter-spacing: .04em; }
+  .brand span { width: 58px; height: 58px; background: #fff; border-radius: 16px; display: grid; place-items: center; }
+  .brand img { width: 42px; }
+  h1 { font-size: 46px; font-weight: 800; line-height: 1.1; margin-top: 28px; letter-spacing: -.01em; }
+  p.lead { font-size: 20px; line-height: 1.5; margin-top: 16px; opacity: .82; }
+  .label { position: absolute; font-size: 17px; font-weight: 700; text-align: center; width: 340px; }
+  .pill { display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 15px; font-weight: 700; margin-right: 8px; margin-top: 24px; }
+  .dark .pill { background: rgba(255,255,255,.1); }
+  .light .pill { background: #E8F2EE; color: #0B4F4A; }
+</style>
+<link rel="stylesheet" href="/app/node_modules/@fontsource/plus-jakarta-sans/latin-800.css">
+<link rel="stylesheet" href="/app/node_modules/@fontsource/plus-jakarta-sans/latin-500.css">
+<link rel="stylesheet" href="/app/node_modules/@fontsource/plus-jakarta-sans/latin-700.css">
+</head>
+<body>
+<div id="root"></div>
+<script>
+const S = (n) => `/docs/media/screens/${n}.png`
+const phone = (n, style = '') => `<div class="phone" style="${style}"><span class="btn-side"></span><div class="scr"><div class="sb"><span>09.41</span><span>5G <i></i></span></div><img src="${S(n)}"></div></div>`
+const laptop = (n, style = '') => `<div class="laptop" style="${style}"><div class="screen"><img src="${S(n)}"></div><div class="base"></div></div>`
+const brand = `<div class="brand"><span><img src="/app/public/icons/mark-128.png"></span>RANTANG</div>`
+const L = {
+  hero: `<div class="stage dark">
+    <div class="ring" style="width:900px;height:900px;right:-320px;top:-260px"></div>
+    <div class="caption">${brand}<h1>Satu catatan dari dapur, sampai ke tangan yang tepat.</h1>
+      <p class="lead">Pencocokan sisa pangan dapur MBG tingkat kelurahan, terhubung ke wadah pintar IoT.</p>
+      <span class="pill">PWA seluler &amp; desktop</span><span class="pill">IoT berat + suhu</span></div>
+    ${laptop('d-dasbor', 'position:absolute;left:700px;top:200px;transform:scale(.74);transform-origin:top left')}
+    ${phone('m-catat', 'position:absolute;left:590px;top:330px;transform:scale(.84);transform-origin:top left')}
+  </div>`,
+  mobile: `<div class="stage light" style="gap:56px">
+    ${['m-sppg-home', 'm-catat', 'm-tawaran', 'm-dasbor'].map((n, i) => `<div style="display:flex;flex-direction:column;align-items:center;gap:22px;margin-top:${i % 2 ? 60 : -20}px">${phone(n)}<b style="font-size:19px">${['Beranda petugas SPPG', 'Catat 3 ketukan', 'Tawaran untuk penerima', 'Dasbor kelurahan'][i]}</b></div>`).join('')}
+  </div>`,
+  mobile2: `<div class="stage light" style="gap:56px">
+    ${['m-wadah', 'm-detail', 'm-jemputan', 'm-tiket'].map((n, i) => `<div style="display:flex;flex-direction:column;align-items:center;gap:22px;margin-top:${i % 2 ? 60 : -20}px">${phone(n)}<b style="font-size:19px">${['Wadah pintar (IoT)', 'Serah terima', 'Jemputan pengolah', 'Tiket sengketa'][i]}</b></div>`).join('')}
+  </div>`,
+  desktop: `<div class="stage light" style="flex-direction:column;gap:30px">${laptop('d-dasbor')}<b style="font-size:20px">Dasbor indikator untuk admin kelurahan dan pengamat (DLH/BGN)</b></div>`,
+  desktop2: `<div class="stage light" style="flex-direction:column;gap:30px">${laptop('d-wadah')}<b style="font-size:20px">Pemantauan wadah pintar: berat, suhu, baterai, sinyal, dan alur data IoT</b></div>`,
+  iot: `<div class="stage dark">
+    <div class="ring" style="width:700px;height:700px;left:-260px;bottom:-300px"></div>
+    <div class="caption" style="top:90px">${brand}<h1>Wadah pintar mengisi berat secara otomatis.</h1>
+      <p class="lead">ESP32 + sel beban HX711 + sensor suhu DS18B20 mengirim data lewat HTTPS/MQTT. Aplikasi langsung memakainya saat petugas mencatat.</p></div>
+    ${laptop('d-wadah', 'position:absolute;left:700px;top:200px;transform:scale(.74);transform-origin:top left')}
+    ${phone('m-wadah', 'position:absolute;left:590px;top:330px;transform:scale(.84);transform-origin:top left')}
+  </div>`,
+}
+document.getElementById('root').innerHTML = L[location.hash.slice(1)] || L.hero
+</script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Panduan Penggunaan RANTANG</title>
+<link rel="stylesheet" href="/app/node_modules/@fontsource/plus-jakarta-sans/latin-400.css">
+<link rel="stylesheet" href="/app/node_modules/@fontsource/plus-jakarta-sans/latin-600.css">
+<link rel="stylesheet" href="/app/node_modules/@fontsource/plus-jakarta-sans/latin-700.css">
+<link rel="stylesheet" href="/app/node_modules/@fontsource/plus-jakarta-sans/latin-800.css">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; color: #23303A; font-size: 10.5pt; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; padding: 18mm 18mm 16mm; position: relative; page-break-after: always; overflow: hidden; }
+  .page:last-child { page-break-after: auto; }
+  .foot { position: absolute; left: 18mm; right: 18mm; bottom: 9mm; display: flex; justify-content: space-between; font-size: 8pt; color: #6B7880; border-top: 1px solid #DDE5E3; padding-top: 3mm; }
+  h1 { font-size: 24pt; font-weight: 800; line-height: 1.15; letter-spacing: -.01em; }
+  h2 { font-size: 17pt; font-weight: 800; color: #0B4F4A; margin-bottom: 2mm; }
+  h3 { font-size: 11.5pt; font-weight: 700; margin: 5mm 0 2mm; }
+  p + p { margin-top: 2.5mm; }
+  .sec { display: flex; align-items: center; gap: 4mm; margin-bottom: 6mm; }
+  .sec .n { width: 13mm; height: 13mm; border-radius: 4mm; background: #116C65; color: #fff; font-weight: 800; font-size: 15pt; display: grid; place-items: center; flex-shrink: 0; }
+  .sec p { color: #4A5862; }
+  .row { display: flex; gap: 8mm; align-items: flex-start; }
+  .phone { width: 58mm; flex-shrink: 0; border-radius: 7mm; background: #0d1414; padding: 1.6mm; }
+  .phone img { width: 100%; display: block; border-radius: 5.6mm; }
+  .phone.sm { width: 50mm; }
+  .phone.xs { width: 44mm; }
+  .cap { font-size: 8.5pt; color: #4A5862; text-align: center; margin-top: 2mm; }
+  ol.steps { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: 3.2mm; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 8mm 1fr; gap: 3mm; }
+  ol.steps li::before { content: counter(s); width: 7mm; height: 7mm; border-radius: 50%; background: #E8F2EE; color: #0B4F4A; font-weight: 800; display: grid; place-items: center; font-size: 9.5pt; }
+  ol.steps b { display: block; }
+  .tip { background: #E8F2EE; border-radius: 3mm; padding: 3.5mm 4mm; margin-top: 4mm; font-size: 9.5pt; }
+  .warn { background: #FFF6D1; color: #4d3c00; border-radius: 3mm; padding: 3.5mm 4mm; margin-top: 4mm; font-size: 9.5pt; }
+  .lock { background: #0A3B38; color: #fff; border-radius: 3mm; padding: 4mm; margin-top: 4mm; font-size: 9.5pt; }
+  .lock b { color: #F2C200; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 3mm; }
+  th { text-align: left; background: #F3F8F6; font-size: 8.5pt; color: #4A5862; padding: 2.4mm 3mm; border-bottom: 1px solid #DDE5E3; }
+  td { padding: 2.6mm 3mm; border-bottom: 1px solid #DDE5E3; vertical-align: top; }
+  .chip { display: inline-block; padding: .6mm 2.6mm; border-radius: 9mm; font-size: 8.5pt; font-weight: 700; white-space: nowrap; }
+  .ok { background: #E8F2EE; color: #0B4F4A; } .wait { background: #FFF6D1; color: #6b5300; } .bad { background: #FBECE8; color: #9c3a26; } .done { background: #116C65; color: #fff; } .scrap { background: #F3EDE6; color: #7A5C3E; }
+  .flow { display: flex; gap: 2mm; align-items: stretch; margin: 5mm 0; }
+  .flow div { flex: 1; background: #F3F8F6; border: 1px solid #CFE2DD; border-radius: 3mm; padding: 3mm; font-size: 9pt; }
+  .flow div b { display: block; font-size: 10.5pt; color: #116C65; }
+  .flow div span { display: block; font-weight: 800; font-size: 8pt; color: #6B7880; }
+  .cover { background: #0A3B38; color: #fff; display: flex; flex-direction: column; justify-content: space-between; padding: 24mm 20mm 20mm; }
+  .cover .logo { width: 30mm; height: 30mm; background: #fff; border-radius: 8mm; display: grid; place-items: center; }
+  .cover .logo img { width: 21mm; }
+  .cover h1 { font-size: 36pt; margin-top: 10mm; }
+  .cover .sub { font-size: 14pt; opacity: .82; margin-top: 4mm; max-width: 130mm; }
+  .cover .ring { position: absolute; right: -60mm; bottom: -60mm; width: 190mm; height: 190mm; border-radius: 50%; border: 22mm solid rgba(242,194,0,.12); }
+  .cover .meta { font-size: 10pt; opacity: .8; position: relative; }
+  .toc { list-style: none; margin-top: 6mm; }
+  .toc li { display: flex; padding: 3mm 0; border-bottom: 1px solid #DDE5E3; font-size: 11pt; }
+  .toc li span:first-child { width: 10mm; font-weight: 800; color: #116C65; }
+  .toc li span:nth-child(2) { flex: 1; font-weight: 600; }
+  .toc li span:last-child { color: #6B7880; }
+  .desk { border-radius: 2.5mm; overflow: hidden; border: 1px solid #DDE5E3; box-shadow: 0 2mm 6mm rgba(0,0,0,.08); }
+  .desk img { width: 100%; display: block; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  code { font-family: Consolas, monospace; font-size: 8.5pt; background: #F3F8F6; padding: .3mm 1.2mm; border-radius: 1mm; }
+  pre { font-family: Consolas, monospace; font-size: 8pt; background: #0A3B38; color: #d8ece8; padding: 4mm; border-radius: 3mm; line-height: 1.5; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<!-- SAMPUL -->
+<section class="page cover">
+  <div class="ring"></div>
+  <div style="position:relative">
+    <div class="logo"><img src="/app/public/icons/mark-128.png"></div>
+    <h1>Panduan Penggunaan RANTANG</h1>
+    <p class="sub">Pencocokan sisa pangan dapur MBG tingkat kelurahan, dengan wadah pintar IoT.</p>
+  </div>
+  <div class="meta">Versi 0.1 · percontohan Kelurahan Sukamaju<br>Untuk petugas SPPG, penerima, pengolah, admin kelurahan, dan pengamat<br>Penyusun: Muhammad Yusuf Arrayyan</div>
+</section>
+
+<!-- DAFTAR ISI -->
+<section class="page">
+  <h1>Isi panduan</h1>
+  <ul class="toc">
+    <li><span>1</span><span>Mengenal RANTANG</span><span>3</span></li>
+    <li><span>2</span><span>Masuk ke aplikasi</span><span>4</span></li>
+    <li><span>3</span><span>Petugas SPPG: mencatat dalam tiga ketukan</span><span>5</span></li>
+    <li><span>4</span><span>Petugas SPPG: wadah pintar, konfirmasi, dan mode luring</span><span>6</span></li>
+    <li><span>5</span><span>Penerima: tawaran dan pengambilan</span><span>7</span></li>
+    <li><span>6</span><span>Pengolah: jadwal jemputan</span><span>8</span></li>
+    <li><span>7</span><span>Tiket sengketa</span><span>9</span></li>
+    <li><span>8</span><span>Admin kelurahan dan pengamat</span><span>10</span></li>
+    <li><span>9</span><span>Wadah pintar (IoT): cara kerja dan perawatan</span><span>11</span></li>
+    <li><span>10</span><span>Arti status dan soal yang sering ditanyakan</span><span>12</span></li>
+  </ul>
+  <div class="tip" style="margin-top:10mm"><b>Coba tanpa akun.</b> Mode demo memakai kode masuk <b>123456</b>. Untuk langsung masuk sebagai peran tertentu, tambahkan <code>?as=sppg</code>, <code>?as=penerima</code>, <code>?as=pengolah</code>, <code>?as=admin</code>, atau <code>?as=pengamat</code> di alamat aplikasi.</div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>2</span></div>
+</section>
+
+<!-- 1 -->
+<section class="page">
+  <div class="sec"><span class="n">1</span><div><h2>Mengenal RANTANG</h2><p>Apa yang dikerjakan aplikasi ini dan siapa saja yang memakainya.</p></div></div>
+  <p>Dapur MBG (SPPG) setiap hari menyisakan dua jenis pangan: <b>pangan layak</b> yang belum disajikan dan <b>sisa piring</b> bekas makan siswa. RANTANG memisahkan keduanya sejak di dapur, lalu mencocokkan pangan layak dengan warga yang terdaftar di kelurahan dan sisa piring dengan pengolah maggot atau kompos. Setiap serah terima tercatat lengkap dengan jam dan beratnya.</p>
+  <div class="flow">
+    <div><span>LANGKAH 1</span><b>Pilah</b>Petugas memisahkan dua wadah pintar.</div>
+    <div><span>LANGKAH 2</span><b>Catat</b>Pilih jenis, berat terisi dari wadah, kirim.</div>
+    <div><span>LANGKAH 3</span><b>Cocokkan</b>Sistem menawarkan ke pihak terdekat yang aktif.</div>
+    <div><span>LANGKAH 4</span><b>Serah terima</b>Pengambil dan dapur sama-sama mengonfirmasi.</div>
+    <div><span>LANGKAH 5</span><b>Evaluasi</b>Dasbor mingguan dan ekspor CSV.</div>
+  </div>
+  <div class="lock"><b>Aturan dua aliran (terkunci).</b> Hanya catatan pangan layak yang boleh ditawarkan ke warga. Sisa piring hanya ke pengolah. Pangan layak yang sudah lewat batas waktu dari jam masak (bawaan 4 jam) otomatis hanya ditawarkan ke pengolah. Aturan ini tidak bisa diubah oleh siapa pun dari aplikasi.</div>
+  <h3>Peran pengguna</h3>
+  <table>
+    <tr><th>Peran</th><th>Yang dikerjakan</th><th>Hak akses</th></tr>
+    <tr><td><b>Petugas SPPG</b></td><td>Mencatat sisa pangan saat dapur sibuk</td><td>Buat catatan, konfirmasi serah terima, nolkan timbangan</td></tr>
+    <tr><td><b>Penerima</b></td><td>Mengambil pangan layak dengan tenang</td><td>Lihat tawaran, ambil atau lewati, buat tiket</td></tr>
+    <tr><td><b>Pengolah</b></td><td>Menjemput sisa piring sesuai jadwal</td><td>Konfirmasi dan tandai jemputan</td></tr>
+    <tr><td><b>Admin kelurahan/LPM</b></td><td>Menetapkan aturan, daftar penerima, menengahi sengketa</td><td>Kelola aturan, daftar, tiket</td></tr>
+    <tr><td><b>Pengamat (DLH/BGN)</b></td><td>Memantau tanpa mengubah</td><td>Dasbor baca saja, ekspor</td></tr>
+  </table>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>3</span></div>
+</section>
+
+<!-- 2 -->
+<section class="page">
+  <div class="sec"><span class="n">2</span><div><h2>Masuk ke aplikasi</h2><p>Satu nomor WhatsApp, satu kode, tanpa kata sandi.</p></div></div>
+  <div class="row">
+    <div><div class="phone"><img src="/media/_img/m-login.jpg"></div><p class="cap">Layar masuk di ponsel</p></div>
+    <div style="flex:1">
+      <ol class="steps">
+        <li><span><b>Buka RANTANG</b>Dari ikon di layar utama ponsel, atau alamat yang dibagikan kelurahan. RANTANG bisa dipasang seperti aplikasi biasa lewat menu peramban "Tambahkan ke layar utama".</span></li>
+        <li><span><b>Pilih peran Anda</b>Petugas SPPG, Penerima, Pengolah, Admin kelurahan, atau Pengamat. Peran sudah ditetapkan oleh admin; pilih yang sesuai.</span></li>
+        <li><span><b>Isi nomor WhatsApp</b>Tanpa angka 0 di depan, misalnya <code>812 3456 7801</code>. Tekan <b>Kirim kode</b>.</span></li>
+        <li><span><b>Masukkan 6 angka kode</b>Kode dikirim lewat WhatsApp. Di ponsel Android, kode biasanya terisi sendiri. Tekan <b>Masuk</b>.</span></li>
+      </ol>
+      <div class="tip">Nomor yang belum terdaftar tidak bisa masuk. Hubungi admin kelurahan untuk didaftarkan setelah musyawarah.</div>
+      <div class="desk" style="margin-top:6mm"><img src="/media/_img/d-login.jpg"></div>
+      <p class="cap">Layar masuk di komputer kantor kelurahan</p>
+    </div>
+  </div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>4</span></div>
+</section>
+
+<!-- 3 -->
+<section class="page">
+  <div class="sec"><span class="n">3</span><div><h2>Petugas SPPG: mencatat dalam tiga ketukan</h2><p>Dirancang untuk dipakai sambil bekerja, bahkan dengan tangan basah.</p></div></div>
+  <div class="row">
+    <div><div class="phone xs"><img src="/media/_img/m-sppg-home.jpg"></div><p class="cap">Beranda petugas</p></div>
+    <div style="flex:1">
+      <h3 style="margin-top:0">Beranda</h3>
+      <p>Bagian atas menunjukkan total berat tercatat 7 hari terakhir, dipisah pangan layak dan sisa piring. Di bawahnya ada daftar catatan hari ini beserta statusnya, lalu kondisi dua wadah pintar. Tombol <b>Catat</b> selalu ada di kanan bawah.</p>
+      <h3>Mencatat</h3>
+      <ol class="steps">
+        <li><span><b>Ketukan 1: pilih jenis</b><i>Pangan layak</i> untuk makanan yang belum disajikan dan tertutup. <i>Sisa piring</i> untuk bekas makan siswa.</span></li>
+        <li><span><b>Berat terisi sendiri</b>Angka dibaca langsung dari wadah pintar yang sesuai jenisnya. Jika wadah terputus, papan angka muncul untuk mengetik manual. Jam masak sudah terpilih; ubah bila perlu.</span></li>
+        <li><span><b>Ketukan 2: Semua sesuai</b>Khusus pangan layak. Mencentang tiga butir cek kelayakan sekaligus. Centang satu per satu jika ada yang perlu diperiksa.</span></li>
+        <li><span><b>Ketukan 3: Kirim</b>Catatan langsung ditawarkan ke pihak yang cocok, dan pihak itu menerima pesan WhatsApp.</span></li>
+      </ol>
+    </div>
+  </div>
+  <div class="row" style="margin-top:5mm; justify-content:center; gap:8mm">
+    <div><div class="phone xs"><img src="/media/_img/m-catat.jpg"></div><p class="cap">Pilih jenis, berat dari wadah</p></div>
+    <div><div class="phone xs"><img src="/media/_img/m-catat-check.jpg"></div><p class="cap">Cek kelayakan lalu Kirim</p></div>
+    <div><div class="phone xs"><img src="/media/_img/m-catat-done.jpg"></div><p class="cap">Catatan terkirim</p></div>
+  </div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>5</span></div>
+</section>
+
+<!-- 4 -->
+<section class="page">
+  <div class="sec"><span class="n">4</span><div><h2>Petugas SPPG: wadah pintar, konfirmasi, mode luring</h2><p>Hal-hal yang dikerjakan setelah mencatat.</p></div></div>
+  <div class="row">
+    <div><div class="phone sm"><img src="/media/_img/m-wadah.jpg"></div><p class="cap">Layar Wadah</p></div>
+    <div style="flex:1">
+      <h3 style="margin-top:0">Memantau wadah pintar</h3>
+      <p>Menu <b>Wadah</b> menampilkan berat, suhu, baterai, dan kekuatan sinyal setiap wadah. Titik hijau berdenyut artinya data masuk dalam 15 detik terakhir.</p>
+      <p>Suhu pangan layak sebaiknya <b>di atas 60 °C</b>. Jika suhu ada di 5–60 °C, aplikasi menandainya <span class="chip bad">zona bahaya</span>; periksa pemanas wadah.</p>
+      <p>Tekan <b>Nolkan timbangan</b> setelah wadah dikosongkan dan dicuci, sebelum diisi lagi.</p>
+      <h3>Mengonfirmasi serah terima</h3>
+      <p>Setelah penerima atau pengolah menekan <i>Sudah diambil</i>, Beranda menampilkan bagian <b>Perlu konfirmasi Anda</b>. Tekan <b>Benar</b> bila berat dan orangnya sesuai. Serah terima baru dianggap selesai setelah dua pihak mengonfirmasi.</p>
+    </div>
+  </div>
+  <div class="row" style="margin-top:6mm">
+    <div><div class="phone sm"><img src="/media/_img/m-offline.jpg"></div><p class="cap">Mode luring</p></div>
+    <div style="flex:1">
+      <h3 style="margin-top:0">Saat sinyal hilang</h3>
+      <p>Pita kuning <b>Luring</b> muncul di atas layar. Catatan tetap bisa dibuat; tombol berubah menjadi <b>Simpan di ponsel</b> dan statusnya <span class="chip wait">Menunggu sinyal</span>.</p>
+      <p>Begitu sinyal kembali, semua catatan yang tertunda terkirim otomatis dan langsung dicocokkan. Anda tidak perlu mengulang apa pun.</p>
+      <div class="warn"><b>Batas waktu tetap berjalan.</b> Jam masak yang tercatat tetap dipakai. Jika sinyal baru kembali setelah lewat batas aman, pangan layak hanya ditawarkan ke pengolah.</div>
+    </div>
+  </div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>6</span></div>
+</section>
+
+<!-- 5 -->
+<section class="page">
+  <div class="sec"><span class="n">5</span><div><h2>Penerima: tawaran dan pengambilan</h2><p>Sukarela, privat, dan bisa berhenti kapan saja.</p></div></div>
+  <div class="row">
+    <div><div class="phone"><img src="/media/_img/m-tawaran.jpg"></div><p class="cap">Kartu tawaran</p></div>
+    <div style="flex:1">
+      <ol class="steps">
+        <li><span><b>Terima kabar WhatsApp</b>Saat ada pangan untuk Anda, pesan masuk berisi tautan ke tawaran.</span></li>
+        <li><span><b>Baca kartu tawaran</b>Isinya perkiraan berat dan porsi, jam masak, lokasi ambil, dan batas waktu ambil. Penanda kuning menunjukkan sisa waktu untuk menjawab (bawaan 30 menit).</span></li>
+        <li><span><b>Tekan Saya ambil atau Lewati</b>Jika Anda tidak bisa datang, tekan <i>Lewati</i>. Tawaran langsung diteruskan ke penerima berikutnya. Melewati tawaran tidak mengurangi giliran Anda.</span></li>
+        <li><span><b>Datang dan ambil</b>Ambil di pintu samping dapur sebelum jam yang tertera.</span></li>
+        <li><span><b>Tekan Sudah diambil</b>Jam dan berat tercatat. Dapur kemudian mengonfirmasi.</span></li>
+      </ol>
+      <div class="tip"><b>Privasi Anda.</b> Nama Anda tidak pernah tampil ke sesama warga. Hanya admin kelurahan dan SPPG terkait yang melihatnya. Di aplikasi tidak ada label "bantuan".</div>
+      <h3>Berhenti atau kembali</h3>
+      <p>Buka <b>Akun</b>, matikan <b>Terima tawaran pangan</b>. Nyalakan lagi kapan saja. Untuk menghapus akun, tekan <b>Minta hapus akun</b>.</p>
+      <p>Menu <b>Riwayat</b> mencatat semua pengambilan Anda.</p>
+    </div>
+  </div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>7</span></div>
+</section>
+
+<!-- 6 -->
+<section class="page">
+  <div class="sec"><span class="n">6</span><div><h2>Pengolah: jadwal jemputan</h2><p>Untuk pengelola budidaya maggot dan kompos komunal.</p></div></div>
+  <div class="row">
+    <div><div class="phone"><img src="/media/_img/m-jemputan.jpg"></div><p class="cap">Jemputan hari ini</p></div>
+    <div style="flex:1">
+      <ol class="steps">
+        <li><span><b>Lihat perkiraan pasokan</b>Kotak hijau tua di atas menjumlahkan berat sisa piring hari ini, yang terjadwal dan yang perlu konfirmasi.</span></li>
+        <li><span><b>Konfirmasi pasokan baru</b>Di bagian <i>Perlu konfirmasi</i>, tekan <b>Konfirmasi</b> agar jemputan masuk jadwal, atau <b>Lewati</b> bila armada tidak tersedia.</span></li>
+        <li><span><b>Datang sesuai jadwal</b>Jam perkiraan tertera di kiri setiap jemputan.</span></li>
+        <li><span><b>Tekan Sudah dijemput</b>Setelah ember diangkut. Jam dan berat tercatat untuk laporan.</span></li>
+      </ol>
+      <div class="tip">Pengolah juga bisa menerima <b>pangan layak</b> yang tidak diambil warga atau sudah lewat batas waktu. Sebaliknya, sisa piring tidak pernah ditawarkan ke warga.</div>
+      <h3>Masalah jadwal atau bau?</h3>
+      <p>Buat tiket dari menu <b>Tiket</b> dengan kategori <i>Jadwal</i> atau <i>Bau</i>. Lihat bagian 7.</p>
+    </div>
+  </div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>8</span></div>
+</section>
+
+<!-- 7 -->
+<section class="page">
+  <div class="sec"><span class="n">7</span><div><h2>Tiket sengketa</h2><p>Setiap keluhan punya jalur dan tenggat.</p></div></div>
+  <div class="row">
+    <div><div class="phone sm"><img src="/media/_img/m-tiket-baru.jpg"></div><p class="cap">Membuat tiket</p></div>
+    <div style="flex:1">
+      <h3 style="margin-top:0">Membuat tiket</h3>
+      <ol class="steps">
+        <li><span><b>Buka Tiket → Buat tiket</b>Atau tekan <i>Laporkan masalah</i> di layar serah terima agar tiket terhubung ke catatannya.</span></li>
+        <li><span><b>Pilih kategori</b>Bau, Jatah, Mutu, Jadwal, atau Perilaku.</span></li>
+        <li><span><b>Ceritakan singkat</b>Tambahkan foto bila ada. Teks yang sudah diketik tetap tersimpan walau layar tertutup.</span></li>
+        <li><span><b>Kirim tiket</b>Tim tiga orang (LPM, SPPG, perwakilan penerima) diberi tahu.</span></li>
+      </ol>
+    </div>
+  </div>
+  <div class="row" style="margin-top:6mm">
+    <div><div class="phone sm"><img src="/media/_img/m-tiket.jpg"></div><p class="cap">Rincian tiket dan tenggat</p></div>
+    <div style="flex:1">
+      <h3 style="margin-top:0">Alur penyelesaian</h3>
+      <table>
+        <tr><th>Tahap</th><th>Siapa</th><th>Batas</th></tr>
+        <tr><td>Tiket dibuat</td><td>Penerima, pengolah, atau SPPG</td><td>—</td></tr>
+        <tr><td>Dibahas dan diselesaikan</td><td>Tim tiga orang</td><td>3 hari</td></tr>
+        <tr><td>Dinaikkan</td><td>Lurah dan DLH</td><td>Setelah 3 hari</td></tr>
+      </table>
+      <p style="margin-top:3mm">Bilah tenggat berubah dari kuning ke merah saat waktu hampir habis. Admin dan SPPG dapat menambah catatan, menandai <b>selesai</b>, atau <b>menaikkan ke Lurah &amp; DLH</b>.</p>
+      <div class="warn">Pelanggaran berulang dapat menghentikan pencocokan sementara untuk pihak terkait, dengan catatan alasan di log audit.</div>
+    </div>
+  </div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>9</span></div>
+</section>
+
+<!-- 8 -->
+<section class="page">
+  <div class="sec"><span class="n">8</span><div><h2>Admin kelurahan dan pengamat</h2><p>Paling nyaman dibuka di komputer.</p></div></div>
+  <div class="desk"><img src="/media/_img/d-dasbor.jpg"></div>
+  <p class="cap">Dasbor indikator</p>
+  <div class="grid2" style="margin-top:4mm">
+    <div>
+      <h3 style="margin-top:0">Dasbor</h3>
+      <p>Empat angka utama: <b>kg dialihkan dari TPA</b>, <b>% pangan layak sampai ke warga</b>, <b>pihak aktif</b>, dan <b>keluhan selesai ≤3 hari</b> (target ≥80%). Di bawahnya grafik berat per hari, tiket terbuka, dan catatan terbaru.</p>
+      <p>Tekan <b>Ekspor CSV</b> untuk laporan ke platform Stop Boros Pangan atau DLH.</p>
+      <p><b>Pengamat</b> melihat dasbor yang sama dengan label <i>Baca saja</i>, tanpa tombol ubah.</p>
+    </div>
+    <div>
+      <h3 style="margin-top:0">Pengaturan aturan (admin)</h3>
+      <ul style="padding-left:4mm">
+        <li><b>Batas waktu</b> jam masak → serah terima (ditetapkan bersama ahli keamanan pangan).</li>
+        <li><b>Waktu menjawab tawaran</b> sebelum dialihkan.</li>
+        <li><b>Jam operasi</b> dapur.</li>
+        <li><b>Daftar penerima &amp; pengolah</b> hasil musyawarah: tambah, aktifkan, nonaktifkan.</li>
+      </ul>
+      <p>Setiap perubahan tercatat di <b>log audit</b> beserta nama dan jamnya. Aturan dua aliran tampil terkunci.</p>
+    </div>
+  </div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>10</span></div>
+</section>
+
+<!-- 9 -->
+<section class="page">
+  <div class="sec"><span class="n">9</span><div><h2>Wadah pintar (IoT)</h2><p>Bagaimana berat dan suhu sampai ke aplikasi.</p></div></div>
+  <div class="flow">
+    <div><span>SENSOR</span><b>Load cell + HX711</b>Menimbang isi wadah. DS18B20 mengukur suhu.</div>
+    <div><span>PENGENDALI</span><b>ESP32</b>Mengirim tiap 10 detik, atau saat berat berubah &gt;100 g dan stabil 3 detik.</div>
+    <div><span>JARINGAN</span><b>HTTPS / MQTT</b>Wi-Fi dapur. Antre 30 pesan bila putus.</div>
+    <div><span>SERVER</span><b>API RANTANG</b>Cek kunci perangkat, simpan, siarkan.</div>
+    <div><span>APLIKASI</span><b>Layar petugas</b>Berat terisi otomatis, peringatan suhu.</div>
+  </div>
+  <div class="desk"><img src="/media/_img/d-wadah.jpg"></div>
+  <p class="cap">Pemantauan wadah di komputer</p>
+  <div class="grid2" style="margin-top:4mm">
+    <div>
+      <h3 style="margin-top:0">Perangkat per dapur</h3>
+      <table>
+        <tr><th>Kode</th><th>Wadah</th><th>Kapasitas</th></tr>
+        <tr><td><code>RTG-01-L</code></td><td>Pangan layak, berpenghangat</td><td>25 kg</td></tr>
+        <tr><td><code>RTG-01-S</code></td><td>Sisa piring</td><td>40 kg</td></tr>
+      </table>
+      <h3>Lampu indikator</h3>
+      <p>Kedip 1× = data terkirim. Kedip 3× = gagal kirim, data diantre. Mati terus = periksa baterai.</p>
+    </div>
+    <div>
+      <h3 style="margin-top:0">Contoh pesan</h3>
+<pre>{ "device_id": "RTG-01-L",
+  "stream": "layak",
+  "weight_g": 6420, "temp_c": 64.3,
+  "battery_pct": 86, "rssi": -61,
+  "ts": "2026-11-21T09:12:04Z" }</pre>
+      <h3>Perawatan</h3>
+      <p>Nolkan timbangan setiap wadah kosong. Isi ulang baterai 18650 bila di bawah 20%. Kalibrasi ulang dengan beban 1 kg setiap bulan.</p>
+    </div>
+  </div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>11</span></div>
+</section>
+
+<!-- 10 -->
+<section class="page">
+  <div class="sec"><span class="n">10</span><div><h2>Arti status dan pertanyaan umum</h2><p>Status selalu memakai warna, ikon, dan teks.</p></div></div>
+  <table>
+    <tr><th style="width:44mm">Status</th><th>Artinya</th><th>Yang perlu dilakukan</th></tr>
+    <tr><td><span class="chip ok">Pangan layak</span> <span class="chip scrap">Sisa piring</span></td><td>Jenis isi wadah</td><td>—</td></tr>
+    <tr><td><span class="chip wait">Menunggu penerima</span></td><td>Tawaran terkirim, belum dijawab</td><td>Penerima menjawab sebelum waktu habis</td></tr>
+    <tr><td><span class="chip ok">Siap diambil</span> <span class="chip ok">Jemputan terjadwal</span></td><td>Tawaran diterima</td><td>Pengambil datang ke dapur</td></tr>
+    <tr><td><span class="chip wait">Perlu konfirmasi dapur</span></td><td>Pengambil sudah menekan Sudah diambil</td><td>Petugas SPPG menekan Benar</td></tr>
+    <tr><td><span class="chip done">Selesai</span></td><td>Dikonfirmasi dua pihak</td><td>—</td></tr>
+    <tr><td><span class="chip wait">Menunggu sinyal</span></td><td>Tersimpan di ponsel, belum terkirim</td><td>Tunggu sinyal; terkirim otomatis</td></tr>
+    <tr><td><span class="chip bad">Belum ada pasangan</span></td><td>Tidak ada pihak aktif yang cocok</td><td>Admin memeriksa daftar</td></tr>
+    <tr><td><span class="chip bad">Sengketa</span></td><td>Ada tiket terkait catatan ini</td><td>Tim tiga orang menindaklanjuti</td></tr>
+  </table>
+  <h3 style="margin-top:7mm">Pertanyaan umum</h3>
+  <p><b>Berat di layar berbeda dengan timbangan dapur.</b> Kosongkan wadah lalu tekan <i>Nolkan timbangan</i>. Jika masih berbeda, ketik manual lewat <i>Ketik manual</i> dan laporkan ke admin untuk kalibrasi.</p>
+  <p><b>Wadah pintar terputus.</b> Aplikasi otomatis beralih ke papan angka. Catat seperti biasa; data perangkat akan menyusul saat tersambung.</p>
+  <p><b>Saya tidak bisa memilih "Pangan layak" lagi.</b> Jika jam masak sudah lewat batas aman, aplikasi meminta mencatat sebagai sisa piring untuk pengolah. Ini aturan keamanan pangan.</p>
+  <p><b>Tawaran hilang sebelum saya jawab.</b> Waktu menjawab sudah habis dan tawaran diteruskan. Tawaran berikutnya tetap datang seperti biasa.</p>
+  <p><b>Bagaimana kalau saya ganti nomor WhatsApp?</b> Hubungi admin kelurahan untuk memperbarui nomor.</p>
+  <div class="tip" style="margin-top:6mm">Kontak: admin kelurahan/LPM setempat. Kode sumber dan dokumentasi teknis: github.com/YusufArrayyan/RANTANG</div>
+  <div class="foot"><span>RANTANG · Panduan Penggunaan</span><span>12</span></div>
+</section>
+
+</body>
+</html>

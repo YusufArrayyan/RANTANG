@@ -9,3 +9,5 @@ build/
 .claude/
 Logo RANTANG.png
 PRD_RANTANG_Yusuf_Arrayyan.docx
+media/_*
+media/node_modules/

@@ -85,7 +85,7 @@ export default function Shell() {
         <main id="konten" key={pathname}>
           <Outlet />
         </main>
-        {user.role === 'sppg' && pathname !== '/catat' && (
+        {user.role === 'sppg' && pathname === '/' && (
           <Link to="/catat" className="fab" aria-label="Catat sisa pangan"><Plus size={24} strokeWidth={2.5} />Catat</Link>
         )}
         <nav className="bottomnav" aria-label="Navigasi bawah">

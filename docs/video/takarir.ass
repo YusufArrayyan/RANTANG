@@ -1,0 +1,69 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Cap,Segoe UI Semibold,36,&H00FFFFFF,&H00FFFFFF,&H18383B0A,&H00000000,0,0,0,0,100,100,0,0,3,16,0,1,110,110,44,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.50,0:00:05.22,Cap,,110,110,44,,Ini RANTANG, sistem pencocokan sisa pangan dapur MBG di tingkat kelurahan.
+Dialogue: 0,0:00:05.27,0:00:10.56,Cap,,110,110,44,,Dalam beberapa menit ke depan, kita lihat alur kerjanya dari dapur sampai ke warga,
+Dialogue: 0,0:00:10.61,0:00:15.59,Cap,,110,110,44,,dan bagaimana wadah pintar berbasis IoT membuat pencatatan cukup tiga ketukan.
+Dialogue: 0,0:00:17.04,0:00:20.58,Cap,,110,110,44,,Setiap hari, dapur SPPG menyisakan dua jenis pangan.
+Dialogue: 0,0:00:20.63,0:00:25.89,Cap,,110,110,44,,Ada pangan layak yang belum disajikan, dan ada sisa piring bekas makan siswa.
+Dialogue: 0,0:00:25.94,0:00:32.38,Cap,,110,110,44,,Selama ini keduanya sering tercampur, tidak ada yang mencocokkan dengan penerima di kelurahan,
+Dialogue: 0,0:00:32.43,0:00:34.87,Cap,,110,110,44,,dan keluhan warga tidak punya jalur.
+Dialogue: 0,0:00:34.92,0:00:38.25,Cap,,110,110,44,,RANTANG memisahkan dua aliran itu sejak di dapur.
+Dialogue: 0,0:00:39.70,0:00:42.74,Cap,,110,110,44,,Sistemnya terdiri dari beberapa lapisan.
+Dialogue: 0,0:00:42.79,0:00:45.05,Cap,,110,110,44,,Di dapur ada dua wadah pintar.
+Dialogue: 0,0:00:45.10,0:00:52.00,Cap,,110,110,44,,Masing-masing punya sel beban dengan modul HX711 untuk menimbang, dan sensor suhu DS18B20.
+Dialogue: 0,0:00:52.05,0:00:54.47,Cap,,110,110,44,,Sebuah ESP32 membaca sensor itu,
+Dialogue: 0,0:00:54.52,0:01:00.11,Cap,,110,110,44,,lalu mengirim data lewat Wi-Fi memakai HTTPS atau MQTT ke server RANTANG.
+Dialogue: 0,0:01:00.16,0:01:07.06,Cap,,110,110,44,,Server memeriksa kunci perangkat, menyimpan data, lalu menyiarkannya langsung ke aplikasi.
+Dialogue: 0,0:01:07.11,0:01:11.23,Cap,,110,110,44,,Kabar untuk warga dan pengolah dikirim lewat WhatsApp.
+Dialogue: 0,0:01:12.68,0:01:15.36,Cap,,110,640,44,,Inilah layar Wadah di aplikasi petugas.
+Dialogue: 0,0:01:15.41,0:01:18.72,Cap,,110,640,44,,Berat dan suhu diperbarui setiap beberapa detik.
+Dialogue: 0,0:01:18.77,0:01:21.46,Cap,,110,640,44,,ESP32 mengirim data tiap sepuluh detik,
+Dialogue: 0,0:01:21.51,0:01:26.50,Cap,,110,640,44,,atau segera saat berat berubah lebih dari seratus gram dan sudah stabil.
+Dialogue: 0,0:01:26.55,0:01:32.45,Cap,,110,640,44,,Kalau Wi-Fi putus, perangkat menyimpan pesannya dan mengirim ulang begitu tersambung.
+Dialogue: 0,0:01:32.50,0:01:34.70,Cap,,110,640,44,,Suhu pangan layak juga dipantau.
+Dialogue: 0,0:01:34.75,0:01:41.21,Cap,,110,640,44,,Begitu masuk zona bahaya, antara lima sampai enam puluh derajat, aplikasi memberi peringatan.
+Dialogue: 0,0:01:42.66,0:01:44.61,Cap,,110,640,44,,Sekarang petugas mencatat.
+Dialogue: 0,0:01:44.66,0:01:47.39,Cap,,110,640,44,,Ketukan pertama, pilih pangan layak.
+Dialogue: 0,0:01:47.44,0:01:50.47,Cap,,110,640,44,,Berat langsung terisi dari wadah pintar,
+Dialogue: 0,0:01:50.52,0:01:55.18,Cap,,110,640,44,,jadi petugas tidak perlu menimbang ulang atau mengetik angka.
+Dialogue: 0,0:01:55.23,0:01:57.10,Cap,,110,640,44,,Jam masak sudah terpilih,
+Dialogue: 0,0:01:57.15,0:02:02.50,Cap,,110,640,44,,dan aplikasi menunjukkan sampai jam berapa pangan ini aman ditawarkan.
+Dialogue: 0,0:02:02.55,0:02:07.13,Cap,,110,640,44,,Ketukan kedua, Semua sesuai, untuk tiga butir cek kelayakan.
+Dialogue: 0,0:02:07.18,0:02:08.82,Cap,,110,640,44,,Ketukan ketiga, Kirim.
+Dialogue: 0,0:02:08.87,0:02:10.98,Cap,,110,640,44,,Catatan langsung ditawarkan.
+Dialogue: 0,0:02:12.43,0:02:14.79,Cap,,110,110,44,,Begitu terkirim, sistem mencocokkan.
+Dialogue: 0,0:02:14.84,0:02:18.48,Cap,,110,110,44,,Aturannya terkunci dan tidak bisa diubah dari aplikasi.
+Dialogue: 0,0:02:18.53,0:02:22.24,Cap,,110,110,44,,Pangan layak ditawarkan ke penerima terdekat yang aktif.
+Dialogue: 0,0:02:22.29,0:02:27.06,Cap,,110,110,44,,Sisa piring hanya ke pengolah maggot atau kompos, tidak pernah ke warga.
+Dialogue: 0,0:02:27.11,0:02:33.10,Cap,,110,110,44,,Kalau tawaran tidak dijawab dalam tiga puluh menit, tawaran pindah ke penerima berikutnya.
+Dialogue: 0,0:02:33.15,0:02:39.00,Cap,,110,110,44,,Dan kalau pangan layak sudah lewat empat jam dari jam masak, ia hanya boleh ke pengolah.
+Dialogue: 0,0:02:40.45,0:02:46.02,Cap,,110,640,44,,Di sisi penerima, tawaran muncul sebagai kartu berisi perkiraan berat, lokasi,
+Dialogue: 0,0:02:46.07,0:02:47.60,Cap,,110,640,44,,dan batas waktu ambil.
+Dialogue: 0,0:02:47.65,0:02:52.86,Cap,,110,640,44,,Penerima menekan Saya ambil, datang ke dapur, lalu menekan Sudah diambil.
+Dialogue: 0,0:02:52.91,0:02:55.52,Cap,,110,640,44,,Petugas dapur kemudian mengonfirmasi.
+Dialogue: 0,0:02:55.57,0:03:01.57,Cap,,110,640,44,,Serah terima baru selesai setelah dua pihak setuju, lengkap dengan jam dan beratnya.
+Dialogue: 0,0:03:01.62,0:03:05.46,Cap,,110,640,44,,Nama penerima tidak pernah terlihat oleh sesama warga.
+Dialogue: 0,0:03:06.91,0:03:09.42,Cap,,110,960,44,,Dapur tidak selalu punya sinyal.
+Dialogue: 0,0:03:09.47,0:03:16.37,Cap,,110,960,44,,Dalam mode luring, catatan disimpan di ponsel dan dikirim otomatis saat sinyal kembali.
+Dialogue: 0,0:03:16.42,0:03:23.97,Cap,,110,960,44,,Untuk keluhan, ada tiket sengketa dengan lima kategori: bau, jatah, mutu, jadwal, dan perilaku.
+Dialogue: 0,0:03:24.02,0:03:27.80,Cap,,110,960,44,,Tim tiga orang menyelesaikannya dalam tiga hari.
+Dialogue: 0,0:03:27.85,0:03:31.32,Cap,,110,960,44,,Lewat dari itu, tiket naik ke lurah dan DLH.
+Dialogue: 0,0:03:32.77,0:03:33.29,Cap,,110,1240,44,,Terakhir,
+Dialogue: 0,0:03:33.34,0:03:39.30,Cap,,110,1240,44,,admin kelurahan dan pengamat dari DLH melihat dasbor: berapa kilogram yang dialihkan dari TPA,
+Dialogue: 0,0:03:39.35,0:03:43.32,Cap,,110,1240,44,,persentase pangan layak yang sampai ke warga, pihak yang aktif,
+Dialogue: 0,0:03:43.37,0:03:45.69,Cap,,110,1240,44,,dan keluhan yang selesai tepat waktu.
+Dialogue: 0,0:03:45.74,0:03:51.37,Cap,,110,1240,44,,Kondisi wadah pintar ikut terpantau, dan semua data bisa diekspor ke CSV untuk pelaporan.
+Dialogue: 0,0:03:52.82,0:03:53.93,Cap,,110,110,44,,Itulah RANTANG.
+Dialogue: 0,0:03:53.98,0:03:58.50,Cap,,110,110,44,,Wadah pintar mencatat beratnya, aplikasi menjaga aturannya,
+Dialogue: 0,0:03:58.55,0:04:01.60,Cap,,110,110,44,,dan warga menerima pangan dengan tenang.
+Dialogue: 0,0:04:01.65,0:04:05.47,Cap,,110,110,44,,Kode sumber dan dokumentasinya tersedia di GitHub.

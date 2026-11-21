@@ -17,6 +17,17 @@ Aplikasi web seluler-pertama (PWA) yang menghubungkan dapur SPPG, kelurahan/LPM,
 | `docs/` | Panduan pengguna (PDF), mockup, video alur sistem, arsitektur |
 | `PRODUCT.md`, `DESIGN.md` | Konteks produk dan sistem visual |
 
+## Dokumen pendukung
+
+| Berkas | Isi |
+|---|---|
+| [docs/Panduan_Pengguna_RANTANG.pdf](docs/Panduan_Pengguna_RANTANG.pdf) | Panduan penggunaan visual, 12 halaman, untuk semua peran |
+| [docs/video/RANTANG_alur_kerja_dan_IoT.mp4](docs/video/RANTANG_alur_kerja_dan_IoT.mp4) | Video bernarasi (±4 menit, bertakarir): alur kerja dan integrasi IoT |
+| [docs/mockup/](docs/mockup/) | Mockup ponsel dan PC untuk esai (3200×2000 px) |
+| [docs/media/screens/](docs/media/screens/) | Tangkapan layar asli aplikasi |
+
+Semua berkas di atas dibuat ulang dari aplikasi dengan skrip di `media/` (Playwright + edge-tts + ffmpeg).
+
 ## Menjalankan
 
 ```bash
