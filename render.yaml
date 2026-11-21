@@ -1,0 +1,39 @@
+# Render Blueprint untuk RANTANG
+# Pakai: dashboard.render.com → New → Blueprint → pilih repo YusufArrayyan/RANTANG.
+# (Render hanya membaca berkas bernama render.yaml di akar repo.)
+#
+# Satu layanan web menyajikan semuanya dari domain yang sama:
+#   /            PWA RANTANG (hasil build app/)
+#   /api/*       REST, telemetri wadah pintar (POST /api/iot/telemetry), siaran SSE (/api/stream)
+
+services:
+  - type: web
+    name: rantang
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: .
+    buildCommand: npm ci --prefix app && npm run build --prefix app && npm install --prefix server --omit=dev --no-audit --no-fund
+    startCommand: node server/src/index.js
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # PWA memakai API di domain yang sama
+      - key: VITE_API_URL
+        value: same-origin
+      # Kunci tiap ESP32, format id:kunci dipisah koma, mis. RTG-01-L:xxxx,RTG-01-S:yyyy
+      # Isi di dashboard Render. Kosong = kunci demo (hanya untuk uji coba).
+      - key: DEVICE_KEYS
+        sync: false
+      # 1 = wadah disimulasikan selama belum ada ESP32 asli yang mengirim data
+      - key: IOT_SIMULATE
+        value: "1"
+      # Opsional: broker MQTT, mis. mqtts://user:pass@broker.example:8883
+      - key: MQTT_URL
+        sync: false
+      - key: MQTT_TOPIC
+        value: rantang/+/bin/+/telemetry
+      - key: CORS_ORIGIN
+        value: "*"

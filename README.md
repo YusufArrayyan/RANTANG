@@ -46,6 +46,19 @@ node tools/fake-device.js                 # meniru dua ESP32 mengirim telemetri
 cd app && VITE_API_URL=http://localhost:8080 npm run dev
 ```
 
+## Deploy ke Render
+
+Repo ini sudah berisi [`render.yaml`](render.yaml) (Render Blueprint).
+
+1. Masuk ke [dashboard.render.com](https://dashboard.render.com) → **New** → **Blueprint**.
+2. Pilih repo `YusufArrayyan/RANTANG`. Render membaca `render.yaml` dan membuat layanan **rantang**.
+3. Isi `DEVICE_KEYS` bila sudah ada ESP32 asli (format `RTG-01-L:kunci1,RTG-01-S:kunci2`). Biarkan kosong untuk uji coba (memakai kunci demo).
+4. Tekan **Apply**. Setelah build selesai, aplikasi tersedia di `https://rantang-xxxx.onrender.com`.
+
+Satu layanan menyajikan PWA di `/` dan API di `/api/*` pada domain yang sama. Selama belum ada ESP32 yang mengirim data, `IOT_SIMULATE=1` membuat server mengirim data wadah simulasi. Begitu ESP32 asli mengirim ke `https://<domain>/api/iot/telemetry`, simulasi untuk wadah itu berhenti sendiri.
+
+Catatan paket gratis Render: layanan tertidur setelah 15 menit tanpa kunjungan dan butuh ±1 menit untuk bangun. Data disimpan di memori, jadi kembali ke data contoh setiap kali layanan dimulai ulang.
+
 ## Alur kerja
 
 1. **Pilah**: petugas memisahkan dua wadah pintar (layak dan sisa piring).

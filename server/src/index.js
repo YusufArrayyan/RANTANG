@@ -3,10 +3,15 @@
 // - POST /api/iot/telemetry  : ESP32 mengirim berat & suhu (HTTP, kunci perangkat)
 // - MQTT (opsional)          : jika MQTT_URL di-set dan paket "mqtt" terpasang
 // - GET  /api/stream         : Server-Sent Events ke aplikasi (telemetri & perubahan status)
+// - GET  /*                  : menyajikan PWA dari app/dist (satu domain untuk Render)
+// - IOT_SIMULATE=1           : wadah disimulasikan selama belum ada ESP32 asli yang mengirim
 //
 // Penyimpanan di memori untuk demo. Produksi: PostgreSQL (lihat docs/ARSITEKTUR.md).
 
 import http from 'node:http'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { randomUUID, timingSafeEqual } from 'node:crypto'
 import { validateRecord, nextParty, allowedTargetTypes } from '../../app/src/data/rules.js'
 import { makeSeed } from '../../app/src/data/seed.js'
@@ -16,6 +21,21 @@ const CORS = process.env.CORS_ORIGIN || '*'
 const DEVICE_KEYS = Object.fromEntries(
   (process.env.DEVICE_KEYS || 'RTG-01-L:demo-layak,RTG-01-S:demo-sisa').split(',').map((p) => p.trim().split(':')),
 )
+
+const DIST = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../app/dist')
+const HAS_DIST = fs.existsSync(path.join(DIST, 'index.html'))
+const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.woff': 'font/woff', '.webmanifest': 'application/manifest+json', '.json': 'application/json', '.ico': 'image/x-icon' }
+
+function serveStatic(url, res) {
+  let rel = decodeURIComponent(url.pathname)
+  if (rel === '/' || !path.extname(rel)) rel = '/index.html' // PWA memakai HashRouter
+  const file = path.join(DIST, rel)
+  if (!file.startsWith(DIST) || !fs.existsSync(file)) { res.writeHead(404); return res.end('tidak ditemukan') }
+  const ext = path.extname(file)
+  const cache = rel.startsWith('/assets/') ? 'public, max-age=31536000, immutable' : 'no-cache'
+  res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream', 'Cache-Control': cache, 'X-Content-Type-Options': 'nosniff' })
+  fs.createReadStream(file).pipe(res)
+}
 
 const db = makeSeed()
 const clients = new Set()
@@ -40,6 +60,7 @@ export function ingestTelemetry(t, via) {
   const dv = db.devices.find((d) => d.id === t.device_id)
   if (!dv) return { ok: false, code: 404, error: 'perangkat tidak dikenal' }
   if (typeof t.weight_g !== 'number' || t.weight_g < -500 || t.weight_g > 250000) return { ok: false, code: 422, error: 'weight_g tidak wajar' }
+  if (via !== 'sim') dv.realAt = Date.now()
   Object.assign(dv, {
     weightKg: Math.max(0, t.weight_g / 1000),
     tempC: typeof t.temp_c === 'number' ? t.temp_c : dv.tempC,
@@ -195,6 +216,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, db.rules)
     }
 
+    if (req.method === 'GET' && !url.pathname.startsWith('/api/') && HAS_DIST) return serveStatic(url, res)
     send(res, 404, { error: 'tidak ditemukan' })
   } catch (e) {
     send(res, 400, { error: e.message })
@@ -216,7 +238,26 @@ setInterval(() => {
   for (const d of db.devices) if (now - d.lastSeen > 60000) d.online = false
 }, 10000)
 
+// wadah simulasi: meniru firmware selama belum ada data dari ESP32 asli (>30 dtk)
+if (process.env.IOT_SIMULATE === '1') {
+  setInterval(() => {
+    const now = Date.now()
+    for (const dv of db.devices) {
+      if (dv.realAt && now - dv.realAt < 30000) continue
+      const trend = dv.kind === 'layak' ? 0.08 : 0.22
+      let w = dv.weightKg + Math.random() * trend * 2 - trend * 0.4 + (Math.random() - 0.5) * 0.03
+      if (w >= dv.capacityKg * 0.9) w = 0.3 // dikosongkan
+      const target = dv.kind === 'layak' ? 64 : 30
+      ingestTelemetry({
+        device_id: dv.id, site: 'sppg-01', stream: dv.kind, weight_g: Math.round(Math.max(0, w) * 1000),
+        temp_c: Math.round((dv.tempC + (target - dv.tempC) * 0.08 + (Math.random() - 0.5) * 0.4) * 10) / 10,
+        battery_pct: dv.battery, rssi: Math.round(-60 - Math.random() * 10), lid_open: false, fw: dv.fw,
+      }, 'sim')
+    }
+  }, 3000)
+}
+
 server.listen(PORT, () => {
-  console.log(`RANTANG API di http://localhost:${PORT}`)
+  console.log(`RANTANG di http://localhost:${PORT}${HAS_DIST ? ' (PWA + API)' : ' (API saja; jalankan npm run build di app/ untuk PWA)'}`)
   startMqtt()
 })

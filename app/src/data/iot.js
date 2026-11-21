@@ -5,12 +5,14 @@
 // Mode "sim": tanpa server, klien membangkitkan data yang meniru firmware
 //   firmware/rantang-bin/rantang-bin.ino (load cell HX711 + sensor suhu DS18B20).
 
-const API = import.meta.env.VITE_API_URL
+// VITE_API_URL: URL lengkap (https://api.contoh.id) atau "same-origin" bila PWA disajikan oleh server yang sama
+const RAW = import.meta.env.VITE_API_URL
+const API = RAW ? (/^https?:\/\//.test(RAW) ? RAW.replace(/\/$/, '') : '') : null
 
 export function startIot({ getDevices, onTelemetry, onMode }) {
-  if (API) {
+  if (API !== null) {
     try {
-      const es = new EventSource(`${API.replace(/\/$/, '')}/api/stream`)
+      const es = new EventSource(`${API}/api/stream`)
       onMode?.('server')
       es.addEventListener('telemetry', (ev) => {
         const t = JSON.parse(ev.data)
